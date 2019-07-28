@@ -129,8 +129,8 @@ def run_imdb_sync():
     print("Retrieving movies from selected IMDB list.")
     r = requests.get(IMDB_URL, headers={'Accept-Language': library_language})
     tree = html.fromstring(r.content)
-    title_name = tree.xpath("//span[contains(@class, 'pull-left')]//span[contains(@class, 'media-body')]//h4/text()")
-    title_years = tree.xpath("//span[contains(@class, 'pull-left')]//span[contains(@class, 'media-body')]//h4//span/text()[contains(.,'(')]")
+    title_name = tree.xpath("//div[contains(@class, 'media')]//h4/text()")
+    title_years = tree.xpath("//div[contains(@class, 'media')]//h4//span/text()[contains(.,'(')]")
     title_ids = tree.xpath("//span[contains(@class, 'pull-left')]/@data-tconst")
 
     # Create a dictionary of {imdb_id: movie}
